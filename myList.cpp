@@ -1,20 +1,25 @@
-#include "myList.hpp"
 #include <list>
-#include <algorithm>
+#include "myList.hpp"
 
-void listMedian(const std::vector<std::string>* instructions) {
-    std::list<int> lst;
-    for (const std::string& instruction : *instructions) {
-        if (instruction == "pop median") {
-            lst.sort();
-            auto it = lst.begin();
-            std::advance(it, lst.size() / 2);
-            int median = *it;
-            std::cout << median << " ";
-            lst.erase(it);
-        } else {
-            int value = std::stoi(instruction.substr(7)); // Extract value from instruction
-            lst.push_back(value);
+void listMedian(const std::vector<int>* instructions) {
+    std::list<int> data;
+    std::vector<int> medians;
+    for (int instruction : *instructions) {
+        if (instruction > 0) { // Insert
+            auto it = data.begin();
+            while (it != data.end() && *it < instruction) ++it;
+            data.insert(it, instruction);
+        } else { // Pop median
+            int medianIndex = data.size() / 2;
+            auto it = data.begin();
+            std::advance(it, medianIndex);
+            medians.push_back(*it);
+            data.erase(it);
         }
     }
+    // Print medians
+    for (int median : medians) {
+        std::cout << median << " ";
+    }
+    std::cout << std::endl;
 }
