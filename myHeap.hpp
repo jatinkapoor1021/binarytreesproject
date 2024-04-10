@@ -1,9 +1,6 @@
-#ifndef MY_HEAP_HPP
-#define MY_HEAP_HPP
-
 #include <vector>
 #include <iostream>
+#include <queue>
+#include <chrono>
 
-void heapMedian(const std::vector<std::string>* instructions);
-
-#endif
+void heapMedian(const std::vector<int> *instructions);
