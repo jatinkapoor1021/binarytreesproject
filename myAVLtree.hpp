@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <chrono>
 
-// From text book
+//node 
 struct AVL_Node
 {
     int element;
@@ -15,7 +15,7 @@ struct AVL_Node
         : element{ele}, left{lt}, right{rt}, height{h} {}
 };
 
-// From text book
+//AVL_Tree from textbook
 class AVL_Tree
 {
 private:
@@ -24,6 +24,8 @@ private:
 
     AVL_Node *insert(const int &x, AVL_Node *&t)
     {
+
+//loop
         if (t == nullptr)
         {
             t = new AVL_Node(x, nullptr, nullptr);
@@ -39,7 +41,7 @@ private:
         }
         return balance(t);
     }
-
+//min node
     AVL_Node *findMin(AVL_Node *t) const
     {
         return t == nullptr ? nullptr : t->left == nullptr ? t
@@ -74,7 +76,7 @@ private:
         }
         return balance(t);
     }
-
+//balance
     AVL_Node *balance(AVL_Node *&t)
     {
         if (t == nullptr)
@@ -105,12 +107,12 @@ private:
         t->height = std::max(height(t->left), height(t->right)) + 1;
         return t;
     }
-
+//height node
     int height(AVL_Node *t) const
     {
         return t == nullptr ? -1 : t->height;
     }
-
+//rotateWithLeftChild
     AVL_Node *rotateWithLeftChild(AVL_Node *&k2)
     {
         AVL_Node *k1 = k2->left;
@@ -120,7 +122,7 @@ private:
         k1->height = std::max(height(k1->left), k2->height) + 1;
         return k1;
     }
-
+//rotateWithRightChild
     AVL_Node *rotateWithRightChild(AVL_Node *&k1)
     {
         AVL_Node *k2 = k1->right;
@@ -130,30 +132,30 @@ private:
         k2->height = std::max(k1->height, height(k2->right)) + 1;
         return k2;
     }
-
+//doubleWithLeftChild
     AVL_Node *doubleWithLeftChild(AVL_Node *&k3)
     {
         k3->left = rotateWithRightChild(k3->left);
         return rotateWithLeftChild(k3);
     }
-
+//doubleWithRightChild
     AVL_Node *doubleWithRightChild(AVL_Node *&k1)
     {
         k1->right = rotateWithLeftChild(k1->right);
         return rotateWithRightChild(k1);
     }
 
-    // Helper functions
+//getNodeCount Function
     int getNodeCount(AVL_Node *t) const
     {
         return t == nullptr ? 0 : 1 + getNodeCount(t->left) + getNodeCount(t->right);
     }
-
+//isEmpty helper function
     bool isEmpty(AVL_Node *t) const
     {
         return t == nullptr;
     }
-
+//printInOrder function
     void printInOrder(AVL_Node *t) const
     {
         if (t == nullptr)
@@ -164,7 +166,7 @@ private:
         std::cout << t->element << " ";
         printInOrder(t->right);
     }
-
+//public function defined
 public:
     AVL_Tree() : root(nullptr) {}
 
@@ -178,7 +180,7 @@ public:
         root = remove(x, root);
     }
 
-    // Helper function made to keep track of elements in the tree, used to ensure small is never smaller than large
+    // Helper function for tree
     int getNodeCount() const
     {
         return getNodeCount(root);
@@ -189,7 +191,7 @@ public:
         return isEmpty(root);
     }
 
-    // Helper function made to find maximum, which is median for small
+    // Helper function for max
     int getMaximum() const
     {
         AVL_Node *temp = root;
@@ -200,7 +202,7 @@ public:
         return temp->element;
     }
 
-    // Helper function made to find minimum, which is needed to move elements from large to small
+    // Helper function for min
     int getMinimum() const
     {
         AVL_Node *temp = root;
@@ -211,7 +213,7 @@ public:
         return temp->element;
     }
 
-    // testing purposes
+
     void printInOrder() const
     {
         printInOrder(root);
@@ -219,4 +221,6 @@ public:
     }
 };
 
+
+//hpp
 void treeMedian(const std::vector<int> *instructions);

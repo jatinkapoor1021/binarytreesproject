@@ -1,13 +1,13 @@
 #include "myVector.hpp"
-
+//vectorMedian function
 void vectorMedian(const std::vector<int> *instructions)
 {
     std::vector<int> vecMedian;
 
     std::vector<int> medians;
-
+//auto start function
     auto start = std::chrono::high_resolution_clock::now();
-
+//loop
     for (auto it = instructions->begin(); it != instructions->end(); ++it)
     {
         if (*it != -1)
@@ -26,7 +26,7 @@ void vectorMedian(const std::vector<int> *instructions)
             }
         }
     }
-
+//auto end function
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double, std::milli> duration = end - start;
 
@@ -36,5 +36,5 @@ void vectorMedian(const std::vector<int> *instructions)
     }
     std::cout << "\n";
 
-    // std::cout << "Algorithm duration: " << duration.count() << "ms\n";
+
 }

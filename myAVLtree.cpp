@@ -1,17 +1,21 @@
 #include "myAVLtree.hpp"
 
+
+//treeMedian function defined
 void treeMedian(const std::vector<int> *instructions)
 {
+
+//sizes
     AVL_Tree small;
 
     AVL_Tree large;
 
     std::vector<int> medians;
-
+//auto start function
     auto start = std::chrono::high_resolution_clock::now();
 
     int small_size = 0, large_size = 0;
-
+//loop
     for (auto it = instructions->begin(); it != instructions->end(); ++it)
     {
         if (*it != -1)
@@ -61,7 +65,7 @@ void treeMedian(const std::vector<int> *instructions)
             }
         }
     }
-
+//auto end function
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double, std::milli> duration = end - start;
 
@@ -71,5 +75,5 @@ void treeMedian(const std::vector<int> *instructions)
     }
     std::cout << "\n";
 
-    // std::cout << "Algorithm duration: " << duration.count() << "ms\n";
+    
 }
